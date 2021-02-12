@@ -13,7 +13,6 @@ export const getAllShows = () => {
             return response.json();
           })
           .then((data) => {
-            console.log(data);
             dispatch({
               type: "FETCH_ALL_SHOWS_SUCCESS",
               shows: data.data,

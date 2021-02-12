@@ -1,0 +1,19 @@
+.ListItem {
+    width: 100%;
+    text-align: center;
+    display: flex;
+}
+
+.ListItem div {
+    display: flex;
+    width: calc(100%/6);
+    padding: 1rem;
+}
+
+.ListItem:nth-child(even) div {
+    background-color: rgba(211, 211, 250, 0.219);
+}
+
+.ListItem div h4{
+    display: flex;
+}

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import Genre from "./components/views/genre/Genre";
+// import Genre from "./components/views/genre/Genre";
 import Show from "./components/views/show/Show";
+import Navbar from "./components/navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import {getAllShows} from './actions/ShowAction'
 
 const App = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
+  const loading = useSelector((state) => state.show.loading);
 
   const renderApp = () => {
     if (loading) {
@@ -15,7 +16,8 @@ const App = () => {
     }
     return (
       <div className="App">
-        <Genre />
+        <Navbar />
+        {/* <Genre /> */}
         <Show />
       </div>
     );
