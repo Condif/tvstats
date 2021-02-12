@@ -1,0 +1,34 @@
+{ 
+    "data":  [
+    {
+      "fields": {
+        "target": "A3+",
+        "channel": "SVT2",
+        "type": "Nyheter",
+        "thous_avg": "219",
+        "thous_max": "784.2"
+      },
+      "id": 1
+    },
+    {
+      "fields": {
+        "target": "A3+",
+        "channel": "SVT2",
+        "type": "Nyheter",
+        "thous_avg": "166",
+        "thous_max": "616.9"
+      },
+      "id": 1
+    },
+    {
+      "fields": {
+        "target": "A3+",
+        "channel": "SVT2",
+        "type": "Nyheter",
+        "thous_avg": "103",
+        "thous_max": "539.2"
+      },
+      "id": 1
+    }
+    ]
+}
