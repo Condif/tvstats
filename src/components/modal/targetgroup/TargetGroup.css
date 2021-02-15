@@ -1,0 +1,22 @@
+.TargetGroupContent {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.TargetGroupContent .row {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 2rem;
+    height: 6rem;
+    justify-content: center ;
+}
+.TargetGroupContent .row > h3 {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.TargetGroupContent .row .checkBoxContainer {
+    display: flex;
+    margin: none;
+}

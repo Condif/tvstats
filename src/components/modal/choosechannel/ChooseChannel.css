@@ -1,0 +1,54 @@
+.ChooseChannel {
+    height: 15rem;
+}
+
+.buttonDiv {
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.buttonDiv button {
+    border: none;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.buttonDiv button .visited {
+    height: 2rem;
+    border: 1px solid grey;
+    border-bottom: none;
+}
+
+/* ChannelContent */
+
+.ChannelContent {
+    display: flex;
+    flex-direction: column;
+
+}
+.ChannelContent .row {
+    display: flex;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+
+/* CheckBox */
+
+.CheckBox {
+    display: flex;
+    margin-bottom: 1rem;
+    
+}
+
+.CheckBox .checkBox {
+    width: 1.5rem;
+    height: 1,5rem;
+    border: 1px solid grey;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    
+}

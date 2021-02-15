@@ -1,0 +1,22 @@
+.Button {
+    width: calc(100%/6 - 0.8rem);
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.noMargin {
+    width: calc(100%/6 - 0.8rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.Button label{
+    display: flex;
+    font-weight: 600;
+}
+
+.Button button {
+    height: 2rem;
+    background-color: #0062fffd;
+}
