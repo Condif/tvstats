@@ -8,6 +8,7 @@
 .InputField label{
     display: flex;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .InputField input {

@@ -6,7 +6,7 @@
 
 .ListItem div {
     display: flex;
-    width: calc(100%/6);
+    flex-grow: 1;
     padding: 1rem;
 }
 

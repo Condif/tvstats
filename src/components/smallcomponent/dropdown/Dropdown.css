@@ -1,0 +1,22 @@
+.Dropdown button {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 8rem;
+    height: 2rem;
+    border:lightgrey solid 1px;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.ddHeader {
+    border-radius: 0.5rem;
+}
+
+.ddHeaderTitle {
+    margin-left: 1rem;
+}
+
+.Dropdown i {
+    margin-right: 1rem;
+}

@@ -1,6 +1,8 @@
 .TargetGroupContent {
     display: flex;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    height: 6rem;
+    border-bottom: 1px solid lightgrey;
 }
 
 .TargetGroupContent .row {
@@ -8,15 +10,24 @@
     flex-direction: column;
     width: 50%;
     margin-left: 2rem;
+    padding-bottom: 2rem;
     height: 6rem;
     justify-content: center ;
+    border-bottom: lightgrey solid 1px;
 }
 .TargetGroupContent .row > h3 {
     margin-left: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .TargetGroupContent .row .checkBoxContainer {
     display: flex;
     margin: none;
+}
+
+/* GenreContent */
+
+.GenreContent .row {
+    display: flex;
+    flex-direction: row;
 }

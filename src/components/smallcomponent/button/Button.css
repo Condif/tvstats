@@ -6,14 +6,14 @@
 }
 
 .noMargin {
-    width: calc(100%/6 - 0.8rem);
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+
 }
 
 .Button label{
     display: flex;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .Button button {

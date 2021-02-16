@@ -16,7 +16,9 @@ const Modal = (props) => {
         </div>
         
         {modalAnchor === "ChooseChannel" ? <ChooseChannel/> : <TargetGroup/>}
+        <div className="modalFooter"></div>
       </div>
+      
     </div>
   );
 };

@@ -1,19 +1,46 @@
-import CheckBox from "../../smallcomponent/CheckBox"
+import React, { useState, useEffect, useRef } from "react";
 
+import resetThenSet from "../../helpers/ResetThenSet";
+import Dropdown from "../../smallcomponent/dropdown/Dropdown";
 
 const GenreContent = () => {
+  
   return (
     <div className="GenreContent">
-        <div className="row">
-            <CheckBox text1={"Välj Alla"}/>
-        </div>
-        <div className="row">
-            <CheckBox text1={"SVT1"}/>
-            <CheckBox text1={"SVT2"}/>
-            <CheckBox text1={"TV3"}/>
-            <CheckBox text1={"TV4"}/>
-            <CheckBox text1={"TV5"}/>
-        </div>
+      <div className="row">
+        <Dropdown fromComponentString="GenreContent"/>
+        {/* <DropDown
+          title={"Select Genre"}
+          genreList={genreList.genre}
+          isListOpen={isListOpen}
+          toggleList={toggleList}
+          selectItem={selectItem}
+          resetThenSet={resetThenSet}
+          headerTitle={headerTitle}
+          dropdownRef={dropdownRef}
+        />
+        <DropDown
+          title={"Select Genre"}
+          genreList={genreList.genre}
+          isListOpen={isListOpen}
+          toggleList={toggleList}
+          selectItem={selectItem}
+          resetThenSet={resetThenSet}
+          headerTitle={headerTitle}
+          dropdownRef={dropdownRef}
+        />
+        <DropDown
+          title={"Select Genre"}
+          genreList={genreList.genre}
+          isListOpen={isListOpen}
+          toggleList={toggleList}
+          selectItem={selectItem}
+          resetThenSet={resetThenSet}
+          headerTitle={headerTitle}
+          dropdownRef={dropdownRef}
+        /> */}
+      </div>
+      <div className="row"></div>
     </div>
   );
 };

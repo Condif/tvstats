@@ -1,5 +1,5 @@
 .ChooseChannel {
-    height: 15rem;
+    border-bottom: 1px solid lightgrey;
 }
 
 .buttonDiv {
@@ -26,6 +26,7 @@
 .ChannelContent {
     display: flex;
     flex-direction: column;
+    
 
 }
 .ChannelContent .row {
