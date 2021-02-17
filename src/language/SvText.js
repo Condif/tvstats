@@ -17,6 +17,6 @@ export const label = [
     "Pub. Datum till",
     "Titel",
     "Kanaler",
-    "Kategorier",
+    "Kolumner",
     "Målgrupp"
 ];

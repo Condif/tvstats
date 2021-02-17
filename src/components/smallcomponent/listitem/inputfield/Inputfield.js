@@ -1,10 +1,16 @@
 import "./InputField.css"
 
 const InputField = (props) => {
+  const {text1, text2, setInput, marginNone} = props
+
+  const saveInput = (e) => {
+    setInput(e.target.value)
+  }
+  
   return (
-    <div className={props.marginNone ? "" : "InputField"}>
-      <label>{props.text1}</label>
-      <input placeholder={props.text2}></input>
+    <div className={marginNone ? "" : "InputField"}>
+      <label>{text1}</label>
+      <input onChange={(e) => saveInput(e)} placeholder={text2}></input>
     </div>
   );
 };

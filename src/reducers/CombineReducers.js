@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { dropdownReducer } from "./DropdownReducer";
+import { programQueryReducer } from "./ProgramQueryReducer";
 import {showReducer} from "./ShowReducer";
 
 const rootReducer = combineReducers({
   show: showReducer,
-  dropdown: dropdownReducer
+  programQuery: programQueryReducer
 });
 
 export default rootReducer

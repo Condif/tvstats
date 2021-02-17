@@ -1,11 +1,11 @@
 import "./Button.css";
 
 const Button = (props) => {
-  const {text1, text2, method1, noMargin, modalAnchor} = props
+  const {text1, buttonText, method1, anchor, containerStyles, buttonStyles} = props
   return (
-    <div className={noMargin ? "Button noMargin" : "Button"}>
+    <div className={containerStyles}>
       <label>{text1}</label>
-      <button onClick={() => method1(modalAnchor)}>{text2}</button>
+      {method1 ? <button className={buttonStyles} onClick={() => method1(anchor)}>{buttonText}</button>: <button className={buttonStyles}>{buttonText}</button> }
     </div>
   );
 };

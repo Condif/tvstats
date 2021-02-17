@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import {useSelector, useDispatch} from "react-redux"
 import "./Show.css";
 import ShowTable from "../../../components/showtable/ShowTable";
 import DivComponent from "../../smallcomponent/listitem/DivComponent";
@@ -6,34 +7,10 @@ import InputField from "../../../components/smallcomponent/listitem/inputfield/I
 import Button from "../../../components/smallcomponent/button/Button";
 import Modal from "../../../components/modal/Modal";
 import Dropdown from "../../../components/smallcomponent/dropdown/Dropdown"
-
+import {setProgramQuery} from "../../../actions/ProgramQueryAction"
 const Show = () => {
+  // Import language textfiles
   const [text, setText] = useState({});
-  const [open, setOpen] = useState("");
-  const [openShowDropdown, setOpenShowDropdown] = useState(false);
-  const [categoryList, setCategoryList] = useState([
-    {
-      id: 0,
-      title: "Film",
-      selected: false,
-      key: "category",
-    },
-    {
-      id: 1,
-      title: "Serie",
-      selected: false,
-      key: "category",
-    },
-    {
-      id: 2,
-      title: "Dokumentär",
-      selected: false,
-      key: "category",
-    },
-  ]);
-  const [categoryDropdownHeader, setCategoryDropdownHeader] = useState(
-    "Välj Kategori"
-  );
   const lang = "sv";
 
   if (lang === "sv") {
@@ -46,9 +23,35 @@ const Show = () => {
     });
   }
 
+  // react-redux
+  const columnList = useSelector(state => state.programQuery.programQuery.columns)
+  const programQuery = useSelector(state => state.programQuery.programQuery)
+  const dispatch = useDispatch()
+  
+  // Dropdown states
+  const [openShowDropdown, setOpenShowDropdown] = useState(false);
+  
+
+  // Modal opener
+  const [open, setOpen] = useState("");
   const setOpenHandler = (anchor) => {
     setOpen(anchor);
   };
+  
+  // Input states
+  const [pubFromDateInput, setPubFromDateInput] = useState("")
+  const [pubTooDateInput, setPubTooDateInput] = useState("")
+  const [titelInput, setTitelInput] = useState("")
+  const setColumnListHandler = (columnList) => {
+    let tempProgramQuery = {...programQuery}
+    let tempColumns = [...tempProgramQuery.columns]
+    tempColumns = columnList
+    tempProgramQuery.columns = columnList
+    dispatch(setProgramQuery(tempProgramQuery))
+  }
+  const [columnDropdownHeader, setColumnDropdownHeader] = useState(
+    "Välj Kategori"
+  );
 
   // Logic
   const textHasValues =
@@ -56,6 +59,9 @@ const Show = () => {
     text.helperText !== undefined &&
     text.label !== undefined;
 
+  useEffect(() => {
+    console.log(columnList);
+  }, [columnList])
   return (
     <div className="Show">
       {open === "Channels" && (
@@ -74,27 +80,27 @@ const Show = () => {
       )}
       {textHasValues && (
         <DivComponent
-          container={"FlexStart"}
+          container={"FlexStart Absolute"}
           componentAmount={6}
-          component1={<InputField text1={text.label[0]} text2={text.helperText[0]}/>}
-          component2={<InputField text1={text.label[1]} text2={text.helperText[0]}/>}
-          component3={<InputField text1={text.label[2]} text2={text.helperText[0]}/>}
-          component4={<Button text1={text.label[3]} text2={text.label[3]} method1={setOpenHandler} noMargin={false} modalAnchor="Channels"/>}
+          component1={<InputField setInput={setPubFromDateInput} text1={text.label[0]} text2={text.helperText[0]}/>}
+          component2={<InputField setInput={setPubTooDateInput}  text1={text.label[1]} text2={text.helperText[0]}/>}
+          component3={<InputField setInput={setTitelInput}  text1={text.label[2]} text2={text.helperText[0]}/>}
+          component4={<Button text1={text.label[3]} buttonText={text.label[3]} method1={setOpenHandler} containerStyles={"Button"} buttonStyles={"blue"} anchor="Channels"/>}
           text4={text.label[3]}
           text4_4={text.label[3]}
           method1={setOpenHandler}
           component5={
             <Dropdown
-              list={categoryList}
-              setList={setCategoryList}
-              headerTitle={categoryDropdownHeader}
-              setHeader={setCategoryDropdownHeader}
+              list={columnList}
+              setList={setColumnListHandler}
+              headerTitle={columnDropdownHeader}
+              setHeader={setColumnDropdownHeader}
               setOpenDropdown={setOpenShowDropdown}
               openDropdown={openShowDropdown}
               text1={text.label[4]}
             />
           }
-          component6={<Button text1={text.label[5]} text2={text.label[5]} method1={setOpenHandler} noMargin={true} modalAnchor="TargetGroup"/>}
+          component6={<Button text1={text.label[5]} buttonText={text.label[5]} method1={setOpenHandler} containerStyles={"Button noMargin"} buttonStyles={"blue"} anchor="TargetGroup"/>}
         ></DivComponent>
       )}
       <ShowTable />

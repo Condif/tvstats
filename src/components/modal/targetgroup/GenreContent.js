@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import Dropdown from "../../smallcomponent/dropdown/Dropdown";
 import DivComponent from "../../smallcomponent/listitem/DivComponent";
+import Button from "../../smallcomponent/button/Button"
 
 const GenreContent = () => {
+
+  // from react-redux
+  // const programQuery = useSelector(state => state.programQuery)
+  // const dispatch = useDispatch()
+
+
   const [openGenreDropdown, setOpenGenreDropdown] = useState(false);
   const [genreDropdownHeader, setGenreDropdownHeader] = useState("Välj Genre");
   const [genreList, setGenreList] = useState([
     {
       id: 0,
-      title: "Komedi",
+      title: "None",
       selected: false,
       key: "genre",
     },
@@ -30,7 +37,7 @@ const GenreContent = () => {
   const [testList, setTestList] = useState([
     {
       id: 0,
-      title: "Test",
+      title: "None",
       selected: false,
       key: "test",
     },
@@ -48,12 +55,36 @@ const GenreContent = () => {
     },
   ]);
 
+  // addGenre
+  const [searchTags, setSearchTags] = useState([])
+  const addGenre = () => {
+    const temp = [...searchTags]
+    testList.forEach(element => {
+      if(element.selected) {
+        temp.splice(0, 1, element.title)
+      }
+    });
+    genreList.forEach(element => {
+      if(element.selected) {
+        temp.splice(1, 1, element.title)
+      }
+    });
+
+    setSearchTags(temp)
+    console.log("genre tillagd");
+  }
+
+  useEffect(() => {
+    console.log(searchTags);
+  }, [searchTags])
+
+
   return (
     <div className="GenreContent">
-      <div className="row">
+      <div className="row1">
         <DivComponent
-          container={"FlexStart MarginLeft"}
-          componentAmount={2}
+          container={"FlexStart Absolute MarginLeft MarginTop"}
+          componentAmount={3}
           component1={
             <Dropdown
               openDropdown={openGenreDropdown}
@@ -74,9 +105,13 @@ const GenreContent = () => {
               headerTitle={testDropdownHeader}
             />
           }
+         
         />
       </div>
-      <div className="row"></div>
+      
+      <div className="row2">
+          <Button method1={addGenre} containerStyles={"Button marginLeft"} buttonStyles="green" buttonText="Lägg till"/>
+      </div>
     </div>
   );
 };

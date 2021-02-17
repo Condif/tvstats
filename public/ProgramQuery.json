@@ -1,0 +1,43 @@
+{ 
+    "target_group": [ 
+      { 
+        "group": "A", 
+        "measure": "Rating", 
+        "consolidation": "KO8", 
+        "age_from": "3", 
+        "age_to": "14" 
+      }, 
+      { 
+        "group": "K", 
+        "measure": "Tittartid", 
+        "consolidation": "KO28", 
+        "age_from": "25", 
+        "age_to": "44" 
+      } 
+    ], 
+    "channels": { 
+      "kanaler": [ 
+        "SVT1", 
+        "SVT2" 
+      ], 
+      "kanalhus": [ 
+        "CH3", 
+        "CH2" 
+      ] 
+    }, 
+    "start_date": "2021-02-02", 
+    "end_date": "2021-02-16", 
+    "title": "titel", 
+    "columns": [ 
+      {
+        "title": "Längd",
+        "selected": false,
+        "id": 0
+      },
+      {
+        "title": "Titelkod",
+        "selected": false,
+        "id": 1
+      }
+    ] 
+  }
