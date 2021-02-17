@@ -4,7 +4,7 @@ import Dropdown from "../../smallcomponent/dropdown/Dropdown";
 const GenreContent = () => {
   const [openGenreDropdown, setOpenGenreDropdown] = useState(false);
   const [genreDropdownHeader, setGenreDropdownHeader] = useState(
-    "Select Genre"
+    "Välj Genre"
   );
   const [genreList, setGenreList] = useState([
     {
@@ -26,33 +26,6 @@ const GenreContent = () => {
       key: "genre",
     },
   ]);
-  const genreDropdownRef = useRef("");
-
-  useEffect(() => {
-    
-    const pageClickEvent = (e) => {
-      console.log(genreDropdownRef.current, e.target, e.currentTarget+ "in useeffect genre");
-      if (
-        genreDropdownRef.current !== null &&
-        !genreDropdownRef.current.contains(e.target)
-      ) {
-        setOpenGenreDropdown(!openGenreDropdown);
-      }
-    };
-    // If the item is active (ie open) then listen for clicks
-    if (openGenreDropdown) {
-      window.addEventListener("click", pageClickEvent);
-    }
-
-    return () => {
-      window.removeEventListener("click", pageClickEvent);
-    };
-  }, [openGenreDropdown]);
-
-  useEffect(() => {
-    console.log(openGenreDropdown);
-    console.log(genreDropdownRef);
-  },[openGenreDropdown])
 
   return (
     <div className="GenreContent">
@@ -64,7 +37,6 @@ const GenreContent = () => {
           setOpenDropdown={setOpenGenreDropdown}
           setHeader={setGenreDropdownHeader}
           headerTitle={genreDropdownHeader}
-          dropdownRef={genreDropdownRef}
         />
       </div>
       <div className="row"></div>

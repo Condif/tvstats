@@ -1,23 +1,18 @@
 import React from "react";
 import "./Dropdown.css";
-import {
-  setGenreDropdownHeader,
-  setCategoryDropdownHeader,
-} from "../../../actions/DropdownAction";
 
 const Dropdown = (props) => {
   const {
     list,
     headerTitle,
-    dropdownRef,
     setOpenDropdown,
     setHeader,
     setList,
-    openDropdown
+    openDropdown,
+    text1
   } = props;
 
   const selectItem = (item) => {
-    console.log(list);
     const { title, id, key } = item;
     resetThenSet(id, key, title);
     setOpenDropdown(false);
@@ -33,42 +28,47 @@ const Dropdown = (props) => {
   };
 
   const toggleOpenDropdown = () => {
-    console.log(setOpenDropdown + openDropdown);
     setOpenDropdown(!openDropdown)
   }
 
   return (
     <div className="Dropdown">
-      <button
-        type="button"
-        className="ddHeader"
-        onClick={() =>
-          toggleOpenDropdown()
-        }
-      >
-        <div className="ddHeaderTitle">{headerTitle}</div>
-        {openDropdown ? (
-          <i className="fas fa-arrow-up"></i>
-        ) : (
-          <i className="fas fa-arrow-down"></i>
-        )}
-      </button>
-      {(list && openDropdown) &&(
-        <div ref={dropdownRef} className="ddList" role="list">
-          {list.map((item) => {
-            return (
-              <button
-                type="button"
-                className="ddListItem"
-                key={item.id}
-                onClick={() => selectItem(item)}
-              >
-                {item.title} {item.selected && <i className="fas fa-check"></i>}
-              </button>
-            );
-          })}
-        </div>
+      <label>{text1}</label>
+      <div className="dropDownContainer">
+        <button
+          type="button"
+          className="ddHeader"
+          onClick={() =>
+            toggleOpenDropdown()
+          }
+        >
+          <div className="ddHeaderTitle">{headerTitle}</div>
+          {openDropdown ? (
+            <i className="fas fa-arrow-up"></i>
+          ) : (
+            <i className="fas fa-arrow-down"></i>
+          )}
+        </button>
+        {(list && openDropdown) &&(
+          <div className="ddList" role="list">
+            {list.map((item) => {
+              return (
+                <button
+                  type="button"
+                  className="ddListItem"
+                  key={item.id}
+                  onClick={() => selectItem(item)}
+                >
+                  {item.title} {item.selected && <i className="fas fa-check"></i>}
+                </button>
+              );
+            })}
+
+      </div>      
       )}
+      </div>
+      {openDropdown &&
+      <div className="backdrop" onClick={() => toggleOpenDropdown()}></div>}
     </div>
   );
 };

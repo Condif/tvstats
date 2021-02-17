@@ -1,6 +1,7 @@
 import "./Button.css";
 
-const Button = (text1, text2, method1, noMargin, modalAnchor) => {
+const Button = (props) => {
+  const {text1, text2, method1, noMargin, modalAnchor} = props
   return (
     <div className={noMargin ? "Button noMargin" : "Button"}>
       <label>{text1}</label>

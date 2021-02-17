@@ -1,10 +1,11 @@
 import "./InputField.css"
 
-const InputField = (label, helperText, marginNone) => {
+const InputField = (props) => {
+  console.log(props);
   return (
-    <div className={marginNone ? "" : "InputField"}>
-      <label>{label}</label>
-      <input placeholder={helperText}></input>
+    <div className={props.marginNone ? "" : "InputField"}>
+      <label>{props.text1}</label>
+      <input placeholder={props.text2}></input>
     </div>
   );
 };
