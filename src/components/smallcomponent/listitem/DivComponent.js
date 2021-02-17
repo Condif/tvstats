@@ -1,5 +1,6 @@
 import React from "react";
 import "../../../stylehelper/Container.css";
+import Dropdown from "../../smallcomponent/dropdown/Dropdown"
 const DivComponent = (props) => {
   const {
     container,
@@ -24,6 +25,13 @@ const DivComponent = (props) => {
     text6_6,
     method1,
     noMargin,
+    categoryList,
+    setCategoryList,
+    categoryDropdownHeader,
+    categoryDropdownRef,
+    setCategoryDropdownHeader,
+    setOpenShowDropdown,
+    openShowDropdown
   } = props;
 
   return (
@@ -31,9 +39,21 @@ const DivComponent = (props) => {
       {componentAmount >= 1 && component1(text1, text1_1)}
       {componentAmount >= 2 && component2(text2, text2_2)}
       {componentAmount >= 3 && component3(text3, text3_3)}
-      {componentAmount >= 4 && component4(text4, text4_4, method1, null, "Channels")}
-      {componentAmount >= 5 && component5}
-      {componentAmount === 6 && component6(text6, text6_6, method1, noMargin, "TargetGroup")}
+      {componentAmount >= 4 &&
+        component4(text4, text4_4, method1, null, "Channels")}
+      {componentAmount >= 5 && (
+        <Dropdown
+          list={categoryList}
+          setList={setCategoryList}
+          headerTitle={categoryDropdownHeader}
+          dropdownRef={categoryDropdownRef}
+          setHeader={setCategoryDropdownHeader}
+          setOpenDropdown={setOpenShowDropdown}
+          openDropdown={openShowDropdown}
+        />
+      )}
+      {componentAmount === 6 &&
+        component6(text6, text6_6, method1, noMargin, "TargetGroup")}
     </div>
   );
 };

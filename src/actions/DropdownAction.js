@@ -1,9 +1,10 @@
-export const setIsListOpen = (currentOpenList) => {
-    return { type: "SET_IS_LIST_OPEN", currentOpenList }  
+
+export const setCategoryDropdownHeader = (headerTitle) => {
+    return { type: "SET_CATEGORY_DROPDOWN_HEADER", headerTitle };
 }
 
-export const setHeaderTitle = (headerTitle) => {
-    return { type: "SET_HEADER_TITLE", headerTitle };
+export const setGenreDropdownHeader = (headerTitle) => {
+    return { type: "SET_GENRE_DROPDOWN_HEADER", headerTitle };
 }
 
 

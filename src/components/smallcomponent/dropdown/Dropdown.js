@@ -1,49 +1,41 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./Dropdown.css";
-import { setIsListOpen, setHeaderTitle } from "../../../actions/DropdownAction";
+import {
+  setGenreDropdownHeader,
+  setCategoryDropdownHeader,
+} from "../../../actions/DropdownAction";
 
 const Dropdown = (props) => {
-  const { fromComponentString } = props;
-  const dropdownState = useSelector((state) => state.dropdown);
-  const dispatch = useDispatch();
   const {
-    genreList,
-    currentOpenList,
+    list,
     headerTitle,
     dropdownRef,
-    categoryList,
-  } = dropdownState;
+    setOpenDropdown,
+    setHeader,
+    setList,
+    openDropdown
+  } = props;
 
   const selectItem = (item) => {
+    console.log(list);
     const { title, id, key } = item;
-    resetThenSet(id, key);
-    dispatch(setIsListOpen(""));
-    dispatch(setHeaderTitle(title));
+    resetThenSet(id, key, title);
+    setOpenDropdown(false);
   };
 
-  const resetThenSet = (id, key) => {
-    if (fromComponentString === "Show") {
-      const temp = [...categoryList[key]];
-
-      temp.forEach((item) => (item.selected = false));
-      temp[id].selected = true;
-      dispatch({
-        type: "SET_CATEGORY_LIST",
-        categoryList: { [key]: temp },
-      });
-    } else {
-      const temp = [...genreList[key]];
-
-      temp.forEach((item) => (item.selected = false));
-      temp[id].selected = true;
-
-      dispatch({
-        type: "SET_GENRE_LIST",
-        genreList: { [key]: temp },
-      });
-    }
+  const resetThenSet = (id, key, title) => {
+    const temp = [...list];
+    temp.forEach((item) => (item.selected = false));
+    temp[id].selected = true;
+    console.log(temp  + "key temp");
+    setList(temp);
+    setHeader(title);
   };
+
+  const toggleOpenDropdown = () => {
+    console.log(setOpenDropdown + openDropdown);
+    setOpenDropdown(!openDropdown)
+  }
 
   return (
     <div className="Dropdown">
@@ -51,23 +43,19 @@ const Dropdown = (props) => {
         type="button"
         className="ddHeader"
         onClick={() =>
-          dispatch(
-            setIsListOpen(currentOpenList === "" ? fromComponentString : "")
-          )
+          toggleOpenDropdown()
         }
       >
         <div className="ddHeaderTitle">{headerTitle}</div>
-        {currentOpenList === "Show" ? (
-          <i className="fas fa-arrow-up"></i>
-        ) : currentOpenList === "GenreContent" ? (
+        {openDropdown ? (
           <i className="fas fa-arrow-up"></i>
         ) : (
           <i className="fas fa-arrow-down"></i>
         )}
       </button>
-      {genreList && currentOpenList === "GenreContent" ? (
+      {(list && openDropdown) &&(
         <div ref={dropdownRef} className="ddList" role="list">
-          {genreList.genre.map((item) => {
+          {list.map((item) => {
             return (
               <button
                 type="button"
@@ -80,22 +68,7 @@ const Dropdown = (props) => {
             );
           })}
         </div>
-      ) : genreList && currentOpenList === "Show" ? (
-        <div ref={dropdownRef} className="ddList" role="list">
-          {categoryList.category.map((item) => {
-            return (
-              <button
-                type="button"
-                className="ddListItem"
-                key={item.id}
-                onClick={() => selectItem(item)}
-              >
-                {item.title} {item.selected && <i className="fas fa-check"></i>}
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
+      )}
     </div>
   );
 };

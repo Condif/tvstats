@@ -1,72 +1,68 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Show.css";
 import ShowTable from "../../../components/showtable/ShowTable";
 import DivComponent from "../../smallcomponent/listitem/DivComponent";
 import InputField from "../../../components/smallcomponent/listitem/inputfield/Inputfield";
 import Button from "../../../components/smallcomponent/button/Button";
 import Modal from "../../../components/modal/Modal";
-import Dropdown from "../../../components/smallcomponent/dropdown/Dropdown";
-// import resetThenSet from "../../../components/helpers/ResetThenSet";
+
 const Show = () => {
   const [text, setText] = useState({});
   const [open, setOpen] = useState("");
-  // const [genreList, setGenreList] = useState({
-  //   genre: [
-  //     {
-  //       id: 0,
-  //       title: "Komedi",
-  //       selected: false,
-  //       key: "genre",
-  //     },
-  //     {
-  //       id: 1,
-  //       title: "Drama",
-  //       selected: false,
-  //       key: "genre",
-  //     },
-  //     {
-  //       id: 2,
-  //       title: "Skräck",
-  //       selected: false,
-  //       key: "genre",
-  //     },
-  //   ],
-  // });
-  // const [isListOpen, setIsListOpen] = useState(false);
-  // const dropdownRef = useRef(null);
-  // const [headerTitle, setHeaderTitle] = useState("Välj Genre");
-  // const toggleList = () => {
-  //   setIsListOpen(!isListOpen);
-  // };
+  const [openShowDropdown, setOpenShowDropdown] = useState(false);
+  const [categoryList, setCategoryList] = useState([
+    {
+      id: 0,
+      title: "Film",
+      selected: false,
+      key: "category",
+    },
+    {
+      id: 1,
+      title: "Serie",
+      selected: false,
+      key: "category",
+    },
+    {
+      id: 2,
+      title: "Dokumentär",
+      selected: false,
+      key: "category",
+    },
+  ]);
+  const [categoryDropdownHeader, setCategoryDropdownHeader] = useState(
+    "Select Category"
+  );
+  const categoryDropdownRef = useRef("");
 
-  // const selectItem = (item) => {
-  //   const { title, id, key } = item;
-  //   resetThenSet(id, key, genreList, setGenreList);
-  //   setIsListOpen(false);
-  //   setHeaderTitle(title);
-  // };
+  const pageClickEvent = useCallback(
+    (e) => {
+      console.log(
+        categoryDropdownRef.current,
+        e.target,
+        e.currentTarget,
+        "current"
+      );
+      if (
+        categoryDropdownRef.current !== null &&
+        !categoryDropdownRef.current.contains(e.target)
+      ) {
+        setOpenShowDropdown(!openShowDropdown);
+      }
+    },
+    [openShowDropdown]
+  );
 
-  // useEffect(() => {
-  //   const pageClickEvent = (e) => {
-  //     console.log(e.target);
-  //     if (
-  //       dropdownRef.current !== null &&
-  //       !dropdownRef.current.contains(e.target)
-  //     ) {
-  //       setIsListOpen(!isListOpen);
-  //     }
-  //   };
-  //   // If the item is active (ie open) then listen for clicks
-  //   if (isListOpen) {
-  //     window.addEventListener("click", pageClickEvent);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener("click", pageClickEvent);
-  //   };
-  // }, [isListOpen]);
+  useEffect(() => {
+    // If the item is active (ie open) then listen for clicks
+    if (openShowDropdown) {
+      window.addEventListener("click", pageClickEvent);
+    }
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  }, [openShowDropdown]);
   const lang = "sv";
-
 
   if (lang === "sv") {
     import("../../../language/SvText").then((text) => {
@@ -77,6 +73,11 @@ const Show = () => {
       setText(text);
     });
   }
+
+  useEffect(() => {
+    console.log(openShowDropdown);
+    console.log(categoryDropdownRef);
+  }, [openShowDropdown]);
 
   const setOpenHandler = (anchor) => {
     setOpen(anchor);
@@ -102,7 +103,6 @@ const Show = () => {
           setOpen={setOpenHandler}
           text1={text.label[5]}
           modalAnchor="TargetGroup"
-          
         />
       )}
       {textHasValues && (
@@ -127,9 +127,13 @@ const Show = () => {
           text4_4={text.label[3]}
           method1={setOpenHandler}
           //----------------- 5
-          component5={
-            <Dropdown fromComponentString="Show"/>
-          }
+          categoryList={categoryList}
+          setCategoryList={setCategoryList}
+          categoryDropdownHeader={categoryDropdownHeader}
+          categoryDropdownRef={categoryDropdownRef}
+          setCategoryDropdownHeader={setCategoryDropdownHeader}
+          setOpenShowDropdown={setOpenShowDropdown}
+          openShowDropdown={openShowDropdown}
           //----------------- 6
           component6={Button}
           text6={text.label[5]}
