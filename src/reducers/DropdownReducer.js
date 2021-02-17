@@ -49,7 +49,6 @@ const initialState = {
 };
 
 export const dropdownReducer = (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case "SET_GENRE_LIST":
       return {

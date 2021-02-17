@@ -22,7 +22,6 @@ const Dropdown = (props) => {
     const temp = [...list];
     temp.forEach((item) => (item.selected = false));
     temp[id].selected = true;
-    console.log(temp  + "key temp");
     setList(temp);
     setHeader(title);
   };

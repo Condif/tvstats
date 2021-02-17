@@ -1,7 +1,6 @@
 import "./InputField.css"
 
 const InputField = (props) => {
-  console.log(props);
   return (
     <div className={props.marginNone ? "" : "InputField"}>
       <label>{props.text1}</label>

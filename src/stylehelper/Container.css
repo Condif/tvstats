@@ -4,3 +4,7 @@
     justify-content: flex-start;
     position: absolute;
 }
+
+.MarginLeft {
+    margin-left: 2rem;
+}

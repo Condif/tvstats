@@ -76,18 +76,13 @@ const Show = () => {
         <DivComponent
           container={"FlexStart"}
           componentAmount={6}
-          //----------------- 1
           component1={<InputField text1={text.label[0]} text2={text.helperText[0]}/>}
-          //----------------- 2
           component2={<InputField text1={text.label[1]} text2={text.helperText[0]}/>}
-          //----------------- 3
           component3={<InputField text1={text.label[2]} text2={text.helperText[0]}/>}
-          //----------------- 4
           component4={<Button text1={text.label[3]} text2={text.label[3]} method1={setOpenHandler} noMargin={false} modalAnchor="Channels"/>}
           text4={text.label[3]}
           text4_4={text.label[3]}
           method1={setOpenHandler}
-          //----------------- 5
           component5={
             <Dropdown
               list={categoryList}
@@ -99,7 +94,6 @@ const Show = () => {
               text1={text.label[4]}
             />
           }
-          //----------------- 6
           component6={<Button text1={text.label[5]} text2={text.label[5]} method1={setOpenHandler} noMargin={true} modalAnchor="TargetGroup"/>}
         ></DivComponent>
       )}
